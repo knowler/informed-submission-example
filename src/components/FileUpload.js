@@ -17,9 +17,9 @@ const FileUpload = asField(({
      * Deny files that are too large
      */
     if (maxSize && file.size > bytes.parse(maxSize)) {
-      event.target.value = '';
+      event.target.value = ''
       setError(`file too large. Must be less than ${maxSize}`)
-      return false;
+      return false
     }
 
     /**
@@ -42,7 +42,7 @@ const FileUpload = asField(({
   return (
     <>
       <input type='file' accept={accept} onChange={handleChange} />
-      {error ? <p><small>{error}</small></p> : null}
+      {error ? <p>{error}</p> : null}
     </>
   )
 })

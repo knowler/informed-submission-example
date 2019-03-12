@@ -3,6 +3,7 @@ import { Form, Text, withFormApi } from 'informed'
 import { fetch } from 'whatwg-fetch'
 
 import FileUpload from '@components/FileUpload'
+import Submit from '@components/Submit'
 import { hasValue } from '@utils/validation'
 import { msg } from '@utils/logging'
 
@@ -115,7 +116,7 @@ class ApplicationForm extends Component {
 
         <br />
 
-        <button type='submit' disabled={this.state.submitting}>Submit</button>
+        <Submit disabled={this.state.submitting} />
         <Reset />
 
       </Form>
