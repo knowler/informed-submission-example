@@ -1,7 +1,7 @@
 import React from 'react'
 import { asField, BasicText } from 'informed'
 import styled from 'styled-components'
-import { borderColor, color } from 'styled-system'
+import { borderColor, color, opacity } from 'styled-system'
 
 const Input = styled(BasicText)`
   font-size: 1rem;
@@ -35,11 +35,14 @@ const Wrapper = styled.label`
 Wrapper.displayName = 'Wrapper'
 
 const ErrorMessage = styled.p`
+  opacity: 0;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
   font-size: 0.8rem;
   color: red;
   height: 0.8rem;
+  transition: 0.2s ease;
+  ${opacity}
 `
 ErrorMessage.displayName = 'ErrorMessage'
 
@@ -58,7 +61,7 @@ const Name = asField(({ fieldState, ...props }) => {
         fieldState={fieldState} 
         borderColor={error ? 'red' : 'black'}
       /> 
-      <ErrorMessage>{error ? fieldState.error : null}</ErrorMessage>
+      <ErrorMessage opacity={error ? 1 : 0}>{error ? fieldState.error : null}</ErrorMessage>
     </Wrapper>
   )
 })
