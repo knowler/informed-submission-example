@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Form, Text, withFormApi } from 'informed'
+import { Form, withFormApi } from 'informed'
 import { fetch } from 'whatwg-fetch'
 
-import FileUpload from '@components/FileUpload'
+import Name from '@components/Name'
 import Submit from '@components/Submit'
+import Flex from '@components/Flex'
+import Button from '@components/Button'
 import { hasValue } from '@utils/validation'
 import { msg } from '@utils/logging'
 
@@ -98,28 +100,35 @@ class ApplicationForm extends Component {
    */
   render() {
     const Reset = withFormApi(({formApi}) => (
-      <button type='button' onClick={() => formApi.reset()}>Reset</button>
+      <Button type='button' onClick={() => formApi.reset()}>Reset</Button>
     ))
 
     return (
-      <Form getApi={this.setFormApi} onSubmit={this.handleSubmit}>
+      <Flex justifyContent='center' alignItems='center' height='100%'>
+        <Form getApi={this.setFormApi} onSubmit={this.handleSubmit}>
 
-        <label>
-          What is your name? <Text field='name' validate={hasValue} />
-        </label>
+          <Flex mx='0.5rem'>
+            <Name 
+              field='first_name' 
+              label='First Name' 
+              validate={hasValue}
+              validateOnBlur
+            />
+            <Name
+              field='last_name'
+              label='Last Name'
+              validate={hasValue}
+              validateOnBlur
+            />
+          </Flex>
 
-        <br />
+          <Flex mx='0.5rem'>
+            <Submit disabled={this.state.submitting} />
+            <Reset />
+          </Flex>
 
-        <label>
-          Upload testimony <FileUpload field='testimony' maxSize='2MB' />
-        </label>
-
-        <br />
-
-        <Submit disabled={this.state.submitting} />
-        <Reset />
-
-      </Form>
+        </Form>
+      </Flex>
     )
   }
 }
